@@ -12,6 +12,7 @@ const posts = defineCollection({
     category: z.array(z.string()),
     tags: z.array(z.string()),
     author: z.string(),
+    downloadLink: z.string().optional(), // Properti tambahan untuk tautan download
   }),
 });
 

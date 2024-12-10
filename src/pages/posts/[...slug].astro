@@ -20,37 +20,59 @@ const { Content } = await post.render();
 <BaseLayout title={post.data.title} description={post.data.description}>
   <main>
     <article class="prose mx-auto dark:prose-invert">
-        <div class="prose-h1 text-center">
-          <h1>{post.data.title}</h1>
-        </div>
-        <div>
-          {
-            post.data.cover && (
-              <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
-            )
-          }
-        </div>
-        <div>
-          <Content />
-        </div>
-        <div class="prose-a:no-underline">
-          {
-            post.data.tags.map((tag) => (
-              <span class="mb-2 mr-2 inline-block rounded-full bg-neutral-200 px-3 py-1 text-sm hover:bg-neutral-500 dark:bg-neutral-600">
-                <a href={`/tags/${tag}/1/`}>{tag}</a>
-              </span>
-            ))
-          }
-        </div>
-        <div class="flex justify-between">
-          <small
-            >Publish on <FormattedDate date={post.data.pubDate} />，Update on <FormattedDate
-              date={new Date().toISOString()}
-            /></small
+      <!-- Judul Halaman -->
+      <div class="prose-h1 text-center">
+        <h1>{post.data.title}</h1>
+      </div>
+      
+      <!-- Gambar -->
+      <div>
+        {post.data.cover && (
+          <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
+        )}
+      </div>
+
+      <!-- Tombol Download -->
+      {post.data.downloadLink && (
+        <div class="flex flex-col items-center mt-6 mb-4">
+          <a
+            href={post.data.downloadLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-neutral-200 text-black font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-neutral-300 transition duration-300"
           >
+            Download
+          </a>
         </div>
+      )}
+
+      <!-- Konten Markdown -->
+      <div>
+        <Content />
+      </div>
+
+      <!-- Tags -->
+      <div class="prose-a:no-underline mt-4">
+        {post.data.tags.map((tag) => (
+          <span
+            class="mb-2 mr-2 inline-block rounded-full bg-neutral-200 px-3 py-1 text-sm hover:bg-neutral-500 dark:bg-neutral-600"
+          >
+            <a href={`/tags/${tag}/1/`}>{tag}</a>
+          </span>
+        ))}
+      </div>
+
+      <!-- Informasi Publikasi -->
+      <div class="flex justify-between mt-4">
+        <small>
+          Publish on <FormattedDate date={post.data.pubDate} />, Update on{" "}
+          <FormattedDate date={new Date().toISOString()} />
+        </small>
+      </div>
     </article>
-    <div class="mt-4">
+
+    <!-- Related Posts -->
+    <div class="mt-8">
       <RelatedPostsCard
         currentCategory={post.data.category[0]}
         currentSlug={post.slug}
