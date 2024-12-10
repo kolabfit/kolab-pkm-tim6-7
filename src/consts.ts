@@ -2,9 +2,10 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 // Base Page Metadata, src/layouts/BaseLayout.astro
-export const BRAND_NAME = "AstroVerse";
-export const SITE_TITLE = "AstroVerse";
+export const BRAND_NAME = "Komunitas Halal Bandung";
+export const SITE_TITLE = "Komunitas Halal Bandung Repository";
 export const SITE_DESCRIPTION = "An Astro Theme for Visual Storytelling";
+export const LOGO_URL = "/logo.png";
 
 // Tags Page Metadata, src/pages/tags/index.astro
 export const Tags_TITLE = "AstroVerse - All Tags";
@@ -29,9 +30,9 @@ export function getCategoryMetadata(category: string) {
 
 // Header Links, src/components/Header.astro
 export const HeaderLinks = [
-  { href: "/category/One/1/", title: "One" },
-  { href: "/category/Two/1/", title: "Two" },
-  { href: "/category/Three/1/", title: "Three" },
+  { href: "/category/Photos/1/", title: "Foto" },
+  { href: "/category/Videos/1/", title: "Video" },
+  { href: "/contact/", title: "Kontak" },
 ];
 
 // Footer Links, src/components/Footer.astro

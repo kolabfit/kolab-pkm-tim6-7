@@ -4,20 +4,31 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PostCard from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getCategoryMetadata } from "@consts";
+import { getEntries } from "@lib/contentful.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("posts");
+  let allPosts;
+
+  try {
+    allPosts = await getEntries("komunitashalalbandung");
+    console.log("Fetched data:", allPosts);
+  } catch (error) {
+    console.error("Failed to fetch entries from Contentful:", error);
+    allPosts = { items: [], includes: {} };
+  }
+
   const uniqueCategory = [
-    ...new Set(allPosts.map((post) => post.data.category).flat()),
+    ...new Set(allPosts.items.map((post) => post.fields.category).flat()),
   ];
 
   return uniqueCategory.flatMap((category) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.category.includes(category),
+    const filteredPosts = allPosts.items.filter((post) =>
+      post.fields.category.includes(category),
     );
     filteredPosts.sort(
       (a, b) =>
-        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+        new Date(b.sys.createdAt).valueOf() -
+        new Date(a.sys.createdAt).valueOf(),
     );
 
     const pageSize = 12;
@@ -38,7 +49,8 @@ export async function getStaticPaths() {
 
 const params = Astro.params;
 const { page } = Astro.props;
-const { title, description } = getCategoryMetadata(params.category);
+const category = params.category as string;
+const { title, description } = getCategoryMetadata(category);
 ---
 
 <BaseLayout title={title} description={description}>

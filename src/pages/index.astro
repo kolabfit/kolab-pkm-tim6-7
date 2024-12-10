@@ -5,16 +5,21 @@ import HeroCard from "@components/HeroCard.astro";
 import Card from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@consts";
+import { getEntries } from "@lib/contentful.astro";
 
-const allPosts = await getCollection("posts");
-allPosts.sort(
-  (a, b) =>
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
-);
+let data;
+
+try {
+  data = await getEntries("komunitashalalbandung");
+  console.log("Fetched data:", data);
+} catch (error) {
+  console.error("Failed to fetch entries from Contentful:", error);
+  data = { items: [], includes: {} };
+}
 
 const postsPerPage = 15;
-const firstPagePosts = allPosts.slice(0, postsPerPage);
-const totalPages = Math.ceil(allPosts.length / postsPerPage);
+const firstPagePosts = data["items"].slice(0, postsPerPage);
+const totalPages = Math.ceil(data["items"].length / postsPerPage);
 
 const basePath = "/page/";
 ---
@@ -22,7 +27,7 @@ const basePath = "/page/";
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <div class="grid grid-cols-1">
     <div class="col-span-1 mb-4">
-      {firstPagePosts.length > 0 && <HeroCard post={firstPagePosts[0]} />}
+      {firstPagePosts.length > 0 && <HeroCard post={data["items"][0]} />}
     </div>
 
     <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
