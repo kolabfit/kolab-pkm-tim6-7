@@ -13,7 +13,7 @@ export default defineConfig({
   trailingSlash: "always",
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'viewport',
+    defaultStrategy: "viewport",
   },
 
   experimental: {
@@ -51,6 +51,5 @@ export default defineConfig({
         tabler: ["*"],
       },
     }),
-    
   ],
 });

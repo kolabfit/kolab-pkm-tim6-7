@@ -1,0 +1,34 @@
+---
+import { createClient } from "contentful";
+
+export async function getEntries(content_type) {
+  const API_KEY = import.meta.env.CONTENTFUL_API_KEY;
+  const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID;
+
+  // Create a Contentful client
+  const client = createClient({
+    space: SPACE_ID,
+    accessToken: API_KEY,
+  });
+
+  // Fetch entries from Contentful
+  const entries = await client.getEntries({
+    content_type: content_type,
+  });
+  return entries;
+}
+
+export async function getImage(assetId) {
+  const API_KEY = import.meta.env.CONTENTFUL_API_KEY;
+  const SPACE_ID = import.meta.env.CONTENTFUL_SPACE_ID;
+
+  const client = createClient({
+    space: SPACE_ID,
+    accessToken: API_KEY,
+  });
+
+  const asset = await client.getAsset(assetId);
+
+  return asset;
+}
+---

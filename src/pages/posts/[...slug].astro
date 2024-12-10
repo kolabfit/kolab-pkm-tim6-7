@@ -1,25 +1,30 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import RelatedPostsCard from "@components/RelatedPostsCard.astro";
 import FormattedDate from "@components/FormattedDate.astro";
 import OptimizedCover from "@components/OptimizedPicture.astro";
+import { getEntries, getImage } from "@lib/contentful.astro";
+import sanitizeHtml from "sanitize-html";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
+  const posts = await getEntries("komunitashalalbandung");
+  return posts["items"]?.map((post) => ({
+    params: { slug: post.sys.id },
     props: post,
   }));
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+
+// --- Get Image
+const url = post?.fields?.cover?.["sys"]?.id;
+const image = await getImage(url);
+const imageType = image?.fields?.file?.contentType;
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.fields.tittle} description={post.fields.description}>
   <main>
     <article class="prose mx-auto dark:prose-invert">
+<<<<<<< HEAD
       <!-- Judul Halaman -->
       <div class="prose-h1 text-center">
         <h1>{post.data.title}</h1>
@@ -77,6 +82,53 @@ const { Content } = await post.render();
         currentCategory={post.data.category[0]}
         currentSlug={post.slug}
       />
+=======
+      <div class="prose-h1 text-center">
+        <h1>{post.fields.tittle}</h1>
+      </div>
+      <div>
+        {
+          imageType?.includes("image") ? (
+            <OptimizedCover
+              src={"https://" + image?.fields?.file?.url}
+              alt="Gambar"
+            />
+          ) : imageType?.includes("video") ? (
+            <video controls>
+              <source
+                src={"https://" + image?.fields?.file?.url}
+                type={imageType}
+              />
+            </video>
+          ) : null
+        }
+      </div>
+      <div>
+        <p>{post.fields.description}</p>
+      </div>
+      <div class="prose-a:no-underline">
+        <!-- {
+            post.data.tags.map((tag) => (
+              <span class="mb-2 mr-2 inline-block rounded-full bg-neutral-200 px-3 py-1 text-sm hover:bg-neutral-500 dark:bg-neutral-600">
+                <a href={`/tags/${tag}/1/`}>{tag}</a>
+              </span>
+            ))
+          } -->
+      </div>
+      <div class="flex justify-between">
+        <small
+          >Publish on <FormattedDate date={post.sys.createdAt} />，Update on <FormattedDate
+            date={new Date().toISOString()}
+          /></small
+        >
+      </div>
+    </article>
+    <div class="mt-4">
+      <!-- <RelatedPostsCard
+        currentCategory={post.fields.category} 
+        currentSlug={post.sys.id}
+      /> -->
+>>>>>>> b68bd28358e2146902caaeba939c9823f501051b
     </div>
   </main>
 </BaseLayout>
