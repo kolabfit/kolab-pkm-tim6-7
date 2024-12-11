@@ -37,7 +37,8 @@ export function getCategoryMetadata(category: string) {
 // Header Links, src/components/Header.astro
 export const HeaderLinks = [
   { href: "/category/Photos/1/", title: "Foto" },
-  { href: "/category/Videos/1/", title: "Video" },
+  { href: "/category/Powerpoint/1/", title: "Powerpoint" },
+  { href: "/category/Videos/1/", title: "Powerpoint" },
   { href: "/contact/", title: "Kontak" },
 ];
 
