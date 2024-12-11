@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   let allPosts;
 
   try {
-    allPosts = await getEntries("komunitashalalbandung");
+    allPosts = await getEntries();
     console.log("Fetched data:", allPosts);
   } catch (error) {
     console.error("Failed to fetch entries from Contentful:", error);

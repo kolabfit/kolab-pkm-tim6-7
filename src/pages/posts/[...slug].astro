@@ -6,7 +6,7 @@ import { getEntries, getImage } from "@lib/contentful.astro";
 import sanitizeHtml from "sanitize-html";
 
 export async function getStaticPaths() {
-  const posts = await getEntries("komunitashalalbandung");
+  const posts = await getEntries();
   return posts["items"]?.map((post) => ({
     params: { slug: post.sys.id },
     props: post,
