@@ -52,7 +52,7 @@ const imageType = image?.fields?.file?.contentType;
             <div class="mb-4 mt-6 flex flex-col items-center">
               <a
                 href={
-                  post.fields.downloadlink == null
+                  typeof post.fields.downloadlink === "string"
                     ? post.fields.downloadlink
                     : ""
                 }
