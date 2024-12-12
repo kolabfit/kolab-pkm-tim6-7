@@ -21,13 +21,13 @@ const image = await getImage(url);
 const imageType = image?.fields?.file?.contentType;
 ---
 
-<BaseLayout title={post.fields.tittle}>
+<BaseLayout title={post.fields.title} description={post.fields.description}>
   <main>
     <article class="prose mx-auto dark:prose-invert">
       <!-- Related Posts -->
       <div class="mt-8">
         <div class="prose-h1 text-center">
-          <h1>{post.fields.tittle}</h1>
+          <h1>{post.fields.title}</h1>
         </div>
         <div>
           {
