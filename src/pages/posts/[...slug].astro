@@ -27,7 +27,7 @@ const imageType = image?.fields?.file?.contentType;
       <!-- Related Posts -->
       <div class="mt-8">
         <div class="prose-h1 text-center">
-          <h1>{post.fields.title}</h1>
+          <h1 data-pagefind-title={post.fields.title}>{post.fields.title}</h1>
         </div>
         <div>
           {

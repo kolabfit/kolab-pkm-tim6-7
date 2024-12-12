@@ -36,7 +36,11 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    pagefind(),
+    pagefind({
+      elementFilters: {
+        title: "[data-pagefind-title]", // Pilih elemen dengan atribut title
+      },
+    }),
     tailwind(),
 
     partytown({
