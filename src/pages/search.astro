@@ -25,7 +25,12 @@ import Pagefind from "astro-pagefind/components/Search";
           <Pagefind
             id="search"
             className="pagefind-ui h-full w-full"
-            uiOptions={{ showImages: false }}
+            uiOptions={{
+              showImages: false,
+              translations: {
+                placeholder: "Cari Template Disini...",
+              },
+            }}
           />
         </div>
       </div>
