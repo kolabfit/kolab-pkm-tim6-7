@@ -1,7 +1,7 @@
 ---
 import Link from "@components/Links.astro";
 import { Icon } from "astro-icon/components";
-import { LOGO_URL, HeaderLinks } from "@consts";
+import { LOGO_URL, HeaderLinks, CategoryLinks } from "@consts";
 ---
 
 <header class="z-50 flex w-full flex-wrap py-7 md:flex-nowrap md:justify-start">
@@ -72,16 +72,50 @@ import { LOGO_URL, HeaderLinks } from "@consts";
       <div
         class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-center md:gap-x-7 md:gap-y-0"
       >
-        {
-          HeaderLinks.map((link) => (
-            <Link
-              href={link.href}
-              class="px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-200"
-            >
-              {link.title}
-            </Link>
-          ))
-        }
+        <Link
+          href={HeaderLinks.Home.href}
+          class="font-medium text-neutral-900 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+        >
+          {HeaderLinks.Home.title}
+        </Link>
+
+        <div class="hs-dropdown relative inline-flex">
+          <button
+            id="hs-dropdown-unstyled"
+            type="button"
+            class="hs-dropdown-toggle inline-flex items-center justify-center gap-x-2 text-neutral-900 hover:text-neutral-600 hs-dropdown-open:font-medium dark:text-neutral-400 dark:hover:text-neutral-200"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            Kategori
+            <Icon name="tabler:chevron-down" class="icon-base" />
+          </button>
+
+          <div
+            class="hs-dropdown-menu duration z-10 mt-2 hidden w-56 min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="hs-dropdown-example"
+          >
+            {
+              CategoryLinks.map((link) => (
+                <Link
+                  href={link.href}
+                  class="block px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+                >
+                  {link.title}
+                </Link>
+              ))
+            }
+          </div>
+        </div>
+
+        <Link
+          href={HeaderLinks.Contact.href}
+          class="font-medium text-neutral-900 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+        >
+          {HeaderLinks.Contact.title}
+        </Link>
       </div>
     </div>
   </nav>

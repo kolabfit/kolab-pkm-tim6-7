@@ -1,6 +1,8 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
+import { getEntries } from "@lib/contentful.astro";
+
 // Base Page Metadata, src/layouts/BaseLayout.astro
 export const BRAND_NAME = "Komunitas Halal Bandung";
 export const SITE_TITLE = "Komunitas Halal Bandung Repository";
@@ -38,11 +40,15 @@ export function getCategoryMetadata(category: string) {
 }
 
 // Header Links, src/components/Header.astro
-export const HeaderLinks = [
+export const CategoryLinks = [
   { href: "/category/Photos/1/", title: "Foto" },
   { href: "/category/Powerpoint/1/", title: "Powerpoint" },
-  { href: "/contact/", title: "Kontak" },
 ];
+
+export const HeaderLinks = {
+  Contact: { href: "/contact/", title: "Kontak" },
+  Home: { href: "/", title: "Template" },
+};
 
 // // Footer Links, src/components/Footer.astro
 // export const FooterLinks = [
