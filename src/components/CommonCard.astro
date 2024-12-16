@@ -17,19 +17,12 @@ const image = await getAsset(post["fields"]?.["cover"]?.["sys"]?.["id"]);
 >
   <a href={`/posts/${post["sys"]?.["id"]}/`} class="block">
     {
-      imageType?.includes("image") ? (
+      
         <OptimizedCover
           src={"https://" + image?.fields?.file?.url}
           alt="Gambar"
         />
-      ) : imageType?.includes("video") ? (
-        <video controls>
-          <source
-            src={"https://" + image?.fields?.file?.url}
-            type={imageType}
-          />
-        </video>
-      ) : null
+      
     }
     <div class="absolute bottom-0 end-0 start-0 bg-gradient-to-t p-5 md:p-6">
       <div class="mt-16 flex items-center gap-4 text-xs text-white">
