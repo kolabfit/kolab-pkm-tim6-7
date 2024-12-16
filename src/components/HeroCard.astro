@@ -1,7 +1,7 @@
 ---
 import OptimizedCover from "@components/OptimizedPicture.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import { getImage } from "@lib/contentful.astro";
+import { getAsset } from "@lib/contentful.astro";
 
 interface Props {
   post: any;
@@ -28,8 +28,7 @@ function truncateUTF8String(str: string, maxBytes: number) {
 }
 
 const truncatedDescription = truncateUTF8String(post.fields.description, 150);
-const image = await getImage(post["fields"]?.["cover"]?.["sys"]?.["id"]);
-const imageType = image?.fields?.file?.contentType;
+const image = await getAsset(post["fields"]?.["cover"]?.["sys"]?.["id"]);
 ---
 
 <div
@@ -37,21 +36,10 @@ const imageType = image?.fields?.file?.contentType;
 >
   <a href={`/posts/${post["sys"]?.["id"]}/`} class="block md:flex md:flex-1">
     <div class="md:w-2/3">
-      {
-        imageType?.includes("image") ? (
-          <OptimizedCover
-            src={"https://" + image?.fields?.file?.url}
-            alt="Gambar"
-          />
-        ) : imageType?.includes("video") ? (
-          <video controls>
-            <source
-              src={"https://" + image?.fields?.file?.url}
-              type={imageType}
-            />
-          </video>
-        ) : null
-      }
+      <OptimizedCover
+        src={"https://" + image?.fields?.file?.url}
+        alt="Gambar"
+      />
     </div>
     <div
       class="absolute bottom-0 end-0 start-0 bg-gradient-to-t from-black p-4 md:relative md:flex md:w-1/3 md:flex-col md:justify-start md:bg-transparent md:p-5"

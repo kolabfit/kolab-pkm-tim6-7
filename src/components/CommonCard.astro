@@ -2,15 +2,14 @@
 import type { CollectionEntry } from "astro:content";
 import OptimizedCover from "@components/OptimizedPicture.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import { getImage } from "@lib/contentful.astro";
+import { getAsset } from "@lib/contentful.astro";
 
 interface Props {
   post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
-const image = await getImage(post["fields"]?.["cover"]?.["sys"]?.["id"]);
-const imageType = image?.fields?.file?.contentType;
+const image = await getAsset(post["fields"]?.["cover"]?.["sys"]?.["id"]);
 ---
 
 <div
