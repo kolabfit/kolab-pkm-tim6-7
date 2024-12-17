@@ -3,7 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import FormattedDate from "@components/FormattedDate.astro";
 import OptimizedCover from "@components/OptimizedPicture.astro";
 import { getEntries, getAsset } from "@lib/contentful.astro";
-import sanitize from "sanitize-html";
+import { marked } from "marked";
 
 export async function getStaticPaths() {
   const posts = await getEntries();
@@ -19,9 +19,7 @@ const image = await getAsset(post?.fields?.cover?.["sys"].id);
 const video = post.fields.video?.["sys"].id
   ? await getAsset(post.fields.video["sys"].id)
   : null;
-const sanitizedDescription = sanitize(
-  typeof post.fields.description === "string" ? post.fields.description : "",
-);
+const parsedDescription = marked(typeof post.fields.description === 'string' ? post.fields.description : "");
 ---
 
 <BaseLayout title={post.fields.title} description={post.fields.description}>
@@ -69,9 +67,9 @@ const sanitizedDescription = sanitize(
           )
         }
 
-        <div>
-          <p>{sanitizedDescription}</p>
-        </div>
+        
+          <div set:html={parsedDescription}></div>
+        
         <div class="prose-a:no-underline">
           <!-- {
             post.data.tags.map((tag) => (
