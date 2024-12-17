@@ -6,7 +6,6 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwind from "@astrojs/tailwind";
-import { marked } from "marked";
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,7 +42,6 @@ export default defineConfig({
       },
     }),
     tailwind(),
-    marked(),
 
     partytown({
       config: {

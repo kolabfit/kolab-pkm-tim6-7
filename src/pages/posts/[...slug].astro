@@ -19,7 +19,9 @@ const image = await getAsset(post?.fields?.cover?.["sys"].id);
 const video = post.fields.video?.["sys"].id
   ? await getAsset(post.fields.video["sys"].id)
   : null;
-const parsedDescription = marked(typeof post.fields.description === 'string' ? post.fields.description : "");
+const parsedDescription = marked(
+  typeof post.fields.description === "string" ? post.fields.description : "",
+);
 ---
 
 <BaseLayout title={post.fields.title} description={post.fields.description}>
@@ -67,9 +69,8 @@ const parsedDescription = marked(typeof post.fields.description === 'string' ? p
           )
         }
 
-        
-          <div set:html={parsedDescription}></div>
-        
+        <div set:html={parsedDescription} />
+
         <div class="prose-a:no-underline">
           <!-- {
             post.data.tags.map((tag) => (
