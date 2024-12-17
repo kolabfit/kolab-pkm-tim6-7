@@ -7,21 +7,21 @@ import {
 } from "@consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const name = data.get("name");
-    const company = data.get("company");
-    const message = data.get("message");
+// if (Astro.request.method === "POST") {
+//   try {
+//     const data = await Astro.request.formData();
+//     const name = data.get("name");
+//     const company = data.get("company");
+//     const message = data.get("message");
 
-    // Do something with the data
-    Astro.redirect(`https://wa.me/${BRAND_PHONE}?text=Halo, saya ${name} dari ${company}. Pesan saya: ${message}`);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+//     // Do something with the data
+//     Astro.redirect(`https://wa.me/${BRAND_PHONE}?text=Halo, saya ${name} dari ${company}. Pesan saya: ${message}`);
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.error(error.message);
+//     }
+//   }
+// }
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>

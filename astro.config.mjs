@@ -6,12 +6,9 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwind from "@astrojs/tailwind";
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare(),
-  output: "hybrid",
   site: "https://verse-astro.vercel.app/",
   trailingSlash: "always",
   prefetch: {
