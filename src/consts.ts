@@ -41,9 +41,14 @@ export function getCategoryMetadata(category: string) {
 
 // Header Links, src/components/Header.astro
 export const CategoryLinks = [
-  { href: "/category/Photos/1/", title: "Foto" },
+  { href: "/category/Instagram/1/", title: "Instagram" },
   { href: "/category/Powerpoint/1/", title: "Powerpoint" },
-  { href: "/category/Videos/1/", title: "Video" },
+  { href: "/category/Tiktok/1/", title: "Tiktok" },
+  { href: "/category/Kartu Nama/1/", title: "Kartu Nama" },
+  { href: "/category/X Banner/1/", title: "X Banner" },
+  { href: "/category/Flyer/1/", title: "Flyer" },
+  { href: "/category/Poster/1/", title: "Poster" },
+  { href: "/category/Whatsapp/1/", title: "Whatsapp" },
 ];
 
 export const HeaderLinks = {
