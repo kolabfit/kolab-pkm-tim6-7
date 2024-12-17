@@ -1,12 +1,9 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
-
-import { getEntries } from "@lib/contentful.astro";
-
 // Base Page Metadata, src/layouts/BaseLayout.astro
 export const BRAND_NAME = "Komunitas Halal Bandung";
 export const SITE_TITLE = "Komunitas Halal Bandung Repository";
-export const SITE_DESCRIPTION = "An Astro Theme for Visual Storytelling";
+export const SITE_DESCRIPTION = "Repository Komunitas Halal Bandung";
 export const LOGO_URL = "/logo.png";
 export const BRAND_EMAIL = "komunitashalalbandung@gmail.com";
 export const LOCATION_URL_EMBED =

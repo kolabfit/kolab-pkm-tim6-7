@@ -6,6 +6,7 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwind from "@astrojs/tailwind";
+import sanitize from "sanitize-html";
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,6 +32,11 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkModifiedTime],
+  },
+
+  // Expose sanitize globally for convenience
+  globals: {
+    sanitize,
   },
 
   integrations: [
