@@ -41,16 +41,20 @@ export const CategoryLinks = [
   { href: "/category/Instagram/1/", title: "Instagram" },
   { href: "/category/Powerpoint/1/", title: "Powerpoint" },
   { href: "/category/Tiktok/1/", title: "Tiktok" },
-  { href: "/category/Kartu Nama/1/", title: "Kartu Nama" },
+  { href: "/category/Whatsapp/1/", title: "Whatsapp" },
+];
+
+export const PrintCategoryLinks = [
   { href: "/category/X Banner/1/", title: "X Banner" },
   { href: "/category/Flyer/1/", title: "Flyer" },
   { href: "/category/Poster/1/", title: "Poster" },
-  { href: "/category/Whatsapp/1/", title: "Whatsapp" },
+  { href: "/category/Kartu Nama/1/", title: "Kartu Nama" },
 ];
 
 export const HeaderLinks = {
   Contact: { href: "/contact/", title: "Kontak" },
-  Home: { href: "/", title: "Template" },
+  Home: { href: "/", title: "Home" },
+  Request: { href: "/request/", title: "Request Template" },
 };
 
 // // Footer Links, src/components/Footer.astro

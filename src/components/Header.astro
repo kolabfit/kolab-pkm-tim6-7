@@ -1,7 +1,12 @@
 ---
 import Link from "@components/Links.astro";
 import { Icon } from "astro-icon/components";
-import { LOGO_URL, HeaderLinks, CategoryLinks } from "@consts";
+import {
+  LOGO_URL,
+  HeaderLinks,
+  CategoryLinks,
+  PrintCategoryLinks,
+} from "@consts";
 ---
 
 <header class="z-50 flex w-full flex-wrap py-7 md:flex-nowrap md:justify-start">
@@ -22,6 +27,15 @@ import { LOGO_URL, HeaderLinks, CategoryLinks } from "@consts";
     <div
       class="ms-auto flex items-center gap-x-2 py-1 md:order-3 md:col-span-3 md:ps-6"
     >
+      <Link
+        href={HeaderLinks.Request.href}
+        type="button"
+        class="inline-flex items-center gap-x-1 rounded-lg border border-transparent bg-[#F49E20] px-4 py-3 text-[12px] font-medium text-white hover:bg-orange-400 focus:bg-orange-400 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+      >
+        {HeaderLinks.Request.title}
+        <Icon name="tabler:plus" class="icon-base" />
+      </Link>
+
       <button
         type="button"
         class="inline-flex items-center gap-x-2 rounded-xl border border-transparent px-3 py-2 text-sm font-medium text-black transition hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-neutral-700"
@@ -87,7 +101,7 @@ import { LOGO_URL, HeaderLinks, CategoryLinks } from "@consts";
             aria-expanded="false"
             aria-label="Menu"
           >
-            Kategori
+            Media Elektronik
             <Icon name="tabler:chevron-down" class="icon-base" />
           </button>
 
@@ -99,6 +113,37 @@ import { LOGO_URL, HeaderLinks, CategoryLinks } from "@consts";
           >
             {
               CategoryLinks.map((link) => (
+                <Link
+                  href={link.href}
+                  class="block rounded-md px-4 py-3 font-medium text-neutral-900 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"
+                >
+                  {link.title}
+                </Link>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="hs-dropdown relative inline-flex">
+          <button
+            id="hs-dropdown-unstyled"
+            type="button"
+            class="hs-dropdown-toggle inline-flex items-center justify-center gap-x-2 text-neutral-900 hover:text-neutral-600 hs-dropdown-open:font-medium dark:text-neutral-400 dark:hover:text-neutral-200"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            Media Cetak
+            <Icon name="tabler:chevron-down" class="icon-base" />
+          </button>
+
+          <div
+            class="hs-dropdown-menu duration z-10 mt-2 hidden w-56 min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="hs-dropdown-example"
+          >
+            {
+              PrintCategoryLinks.map((link) => (
                 <Link
                   href={link.href}
                   class="block rounded-md px-4 py-3 font-medium text-neutral-900 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"

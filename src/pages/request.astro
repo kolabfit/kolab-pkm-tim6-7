@@ -1,0 +1,98 @@
+---
+import Links from "@components/Links.astro";
+import {
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  BRAND_PHONE,
+} from "@consts";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const company = data.get("company");
+    const message = data.get("message");
+
+    // Do something with the data
+    Astro.redirect(`https://wa.me/${BRAND_PHONE}?text=Halo, saya ${name} dari ${company}. Pesan saya: ${message}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="flex flex-col items-center justify-center">
+    <div
+      class="container mx-auto flex flex-col items-center justify-center px-6 py-12"
+    >
+      <h1
+        class="mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
+      >
+        Kontak <span
+          class="underline-offset-3 underline decoration-gray-600 decoration-8"
+          >Kami</span
+        >
+      </h1>
+      <p
+        class="text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-xl"
+      >
+        Silahkan isi form di bawah ini untuk menghubungi kami.
+      </p>
+    </div>
+
+    <form
+      id="form-request"
+      method="post"
+      class="flex w-1/2 flex-col gap-4 rounded-md border-[1px] border-gray-300 dark:border-white p-6"
+    >
+      <div>
+        <label
+          for="name"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >Nama</label
+        >
+        <input
+          type="text"
+          id="name"
+          class="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="Isi nama anda disini..."
+          required
+        />
+      </div>
+
+      <div>
+        <label
+          for="company"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >Perusahaan</label
+        >
+        <input
+          type="text"
+          id="company"
+          class="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="Isi nama perusahaan disini..."
+          required
+        />
+      </div>
+
+      <div>
+        <label
+          for="message"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >Your message</label
+        >
+        <textarea
+          id="message"
+          rows="4"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="Tinggalkan Komentar..."></textarea>
+      </div>
+
+      <button type="submit" class="text-white dark:text-black bg-black hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white dark:hover:bg-gray-400 dark:focus:ring-gray-400">Hubungi Kami</button>
+    </form>
+  </section>
+</BaseLayout>
